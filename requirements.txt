@@ -1,7 +1,6 @@
 Django
 ollama
-chromadb
-streamlit 
+chromadb 
 pdfplumber 
 langchain
 langchain-core
