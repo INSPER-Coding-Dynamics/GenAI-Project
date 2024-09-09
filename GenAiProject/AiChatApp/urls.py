@@ -4,6 +4,6 @@ from . import views
 
 urlpatterns = [
     path('accounts/login/', auth_views.LoginView.as_view(template_name='AiChatApp/login.html'), name='login'),
-    path('cadastro/', views.register, name='cadastro'),
-     path('', views.home, name='home'),
+    path('cadastro/', views.cadastro, name='cadastro'),
+    path('', views.home, name='home'),
 ]

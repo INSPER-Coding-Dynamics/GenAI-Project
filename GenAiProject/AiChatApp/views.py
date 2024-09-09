@@ -4,7 +4,7 @@ from django.contrib.auth import login
 from .forms import CustomUserCreationForm
 
 
-def register(request):
+def cadastro(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
