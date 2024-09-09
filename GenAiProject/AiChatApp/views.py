@@ -4,7 +4,7 @@ from django.contrib.auth import login
 from .forms import CustomUserCreationForm
 
 
-def cadastro(request):
+def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -13,7 +13,7 @@ def cadastro(request):
             return redirect('home')
     else:
         form = CustomUserCreationForm()
-    return render(request, 'AiChatApp/cadastro.html', {'form': form})
+    return render(request, 'AiChatApp/register.html', {'form': form})
 
 @login_required
 def home(request):
