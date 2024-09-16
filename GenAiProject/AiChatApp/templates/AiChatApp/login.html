@@ -6,19 +6,23 @@
     <title>Login</title>
 </head>
 <body>
-    <h2>Login</h2>
+    <h2>Entrar</h2>
+    <p>Insira suas credenciais para acessar sua conta.</p>
+
     <form method="post">
         {% csrf_token %}
-        <label for="username">Nome do usuário:</label>
-        <input type="text" id="username" name="username" required>
 
-        <label for="password">Senha:</label>
-        <input type="password" id="password" name="password" required>
+        <label for="id_username">Nome de Usuário:</label>
+        <input type="text" id="id_username" name="username" placeholder="Digite seu nome de usuário" required>
+        <small>Digite o nome de usuário que você usou ao se registrar.</small><br><br>
 
-        <button type="submit">Login</button>
+        <label for="id_password">Senha:</label>
+        <input type="password" id="id_password" name="password" placeholder="Digite sua senha" required>
+        <small>Digite sua senha corretamente para acessar sua conta.</small><br><br>
+
+        <button type="submit">Entrar</button>
     </form>
 
-    <!-- Botão para ir para a página de cadastro -->
-    <p>Não tem uma conta? <a href="{% url 'register' %}">Cadastre-se aqui</a></p>
+    <p>Não tem uma conta? <a href="{% url 'register' %}">Cadastre-se aqui</a>.</p>
 </body>
 </html>
