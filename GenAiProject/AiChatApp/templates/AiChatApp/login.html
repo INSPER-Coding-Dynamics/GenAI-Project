@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h2>Entrar</h2>
+    <p>Insira suas credenciais para acessar sua conta.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        
+        {% if form.errors %}
+            <div style="color: red;">
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    
+        <label for="id_username">Nome de Usuário:</label>
+        <input type="text" id="id_username" name="username" placeholder="Digite seu nome de usuário" required>
+        <small>Digite o nome de usuário que você usou ao se registrar.</small><br><br>
+    
+        <label for="id_password">Senha:</label>
+        <input type="password" id="id_password" name="password" placeholder="Digite sua senha" required>
+        <small>Digite sua senha corretamente para acessar sua conta.</small><br><br>
+    
+        <button type="submit">Entrar</button>
+    </form>
+    
+    <p>Não tem uma conta? <a href="{% url 'register' %}">Cadastre-se aqui</a>.</p>
+</body>
+</html>
