@@ -6,51 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-        }
-        .split-container {
-            height: 100vh;
-            display: flex;
-        }
-        .left-side, .right-side {
-            width: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-        .left-side {
-            background-color: #ADD8E6; /* Azul Claro */
-        }
-        .right-side {
-            background-color: #FFA500; /* Laranja */
-        }
-        .form-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            max-width: 450px; /* Aumentar a largura */
-            z-index: 1;
-            background-color: white;
-            padding: 20px; /* Diminuir a altura (menor padding) */
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .left-side img {
-            max-width: 400px;
-        }
-        .right-side img {
-            max-width: 600px;
-        }
-        .error-message {
-            color: red;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'AiChatApp/style/register.css' %}">
 </head>
 <body>
     <div class="split-container">
