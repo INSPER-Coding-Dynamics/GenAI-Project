@@ -17,15 +17,28 @@
             <img src="{% static 'AiChatApp/img/Dynamics.png' %}" alt="Imagem Dynamics">
         </div>
     </div>
+    
 
     <div class="form-container">
         <h2>Login</h2>
         <p>Insira suas credenciais para acessar sua conta.</p>
 
-        <form method="post">
+        <form method="post" novalidate>
             {% csrf_token %}
-            {{ form.as_p }}
+            {% if form.non_field_errors %}
+                <div class="error-message">{{ form.non_field_errors|striptags }}</div>
+            {% endif %}
 
+            {% for field in form %}
+                <div class="form-group">
+                    <label>{{ field.label }}</label>
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <div class="error-message">{{ error|striptags }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            
             <button type="submit" class="btn btn-primary btn-block">Entrar</button>
         </form>
 

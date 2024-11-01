@@ -1,3 +1,5 @@
+
+Copiar código
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -17,19 +19,32 @@
             <img src="{% static 'AiChatApp/img/Dynamics.png' %}" alt="Imagem Dynamics">
         </div>
     </div>
+    
 
     <div class="form-container">
         <h2>Cadastro</h2>
-        <p>Preencha os campos abaixo para criar uma nova conta.</p>
+        <p>Preencha os campos para criar uma nova conta.</p>
 
-        <form method="post">
+        <form method="post" novalidate>
             {% csrf_token %}
-            {{ form.as_p }}
+            {% if form.non_field_errors %}
+                <div class="error-message">{{ form.non_field_errors|striptags }}</div>
+            {% endif %}
 
+            {% for field in form %}
+                <div class="form-group">
+                    <label>{{ field.label }}</label>
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <div class="error-message">{{ error|striptags }}</div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            
             <button type="submit" class="btn btn-primary btn-block">Registrar</button>
         </form>
 
-        <p>Já possui uma conta? <a href="{% url 'login' %}">Faça login aqui</a>.</p>
+        <p>Já tem uma conta? <a href="{% url 'login' %}">Faça login aqui</a>.</p>
     </div>
 </body>
 </html>
