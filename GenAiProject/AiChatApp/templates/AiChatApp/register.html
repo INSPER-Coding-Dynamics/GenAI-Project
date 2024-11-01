@@ -1,50 +1,50 @@
+
+Copiar código
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar Conta</title>
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'AiChatApp/style/auth.css' %}">
 </head>
 <body>
-    <h2>Criar Conta</h2>
-    <p>Preencha os campos abaixo para criar uma nova conta.</p>
+    <div class="split-container">
+        <div class="left-side">
+            <img src="{% static 'AiChatApp/img/Coding.png' %}" alt="Imagem Coding">
+        </div>
+        <div class="right-side">
+            <img src="{% static 'AiChatApp/img/Dynamics.png' %}" alt="Imagem Dynamics">
+        </div>
+    </div>
+    
 
-    <form method="post">
-        {% csrf_token %}
-    
-        <!-- Adicionar bloco para mensagens de erro -->
-        {% if form.errors %}
-            <div style="color: red;">
-                {% for field in form %}
+    <div class="form-container">
+        <h2>Cadastro</h2>
+        <p>Preencha os campos para criar uma nova conta.</p>
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+                <div class="error-message">{{ form.non_field_errors|striptags }}</div>
+            {% endif %}
+
+            {% for field in form %}
+                <div class="form-group">
+                    <label>{{ field.label }}</label>
+                    {{ field }}
                     {% for error in field.errors %}
-                        <p>{{ error }}</p>
+                        <div class="error-message">{{ error|striptags }}</div>
                     {% endfor %}
-                {% endfor %}
-                {% for error in form.non_field_errors %}
-                    <p>{{ error }}</p>
-                {% endfor %}
-            </div>
-        {% endif %}
-    
-        <label for="id_username">Nome de Usuário:</label>
-        <input type="text" id="id_username" name="username" placeholder="Escolha um nome de usuário" required>
-        <small>Utilize apenas letras, números e os caracteres @/./+/-/_.</small><br><br>
-    
-        <label for="id_email">Email:</label>
-        <input type="email" id="id_email" name="email" placeholder="seuemail@exemplo.com" required>
-        <small>Insira um endereço de email válido.</small><br><br>
-    
-        <label for="id_password1">Senha:</label>
-        <input type="password" id="id_password1" name="password1" placeholder="Crie uma senha" required>
-        <small>A senha deve ter pelo menos 8 caracteres.</small><br><br>
-    
-        <label for="id_password2">Confirmar Senha:</label>
-        <input type="password" id="id_password2" name="password2" placeholder="Repita a senha" required>
-        <small>Digite a mesma senha para verificação.</small><br><br>
-    
-        <button type="submit">Cadastrar</button>
-    </form>
-    
-    <p>Já possui uma conta? <a href="{% url 'login' %}">Faça login aqui</a>.</p>
+                </div>
+            {% endfor %}
+            
+            <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+        </form>
+
+        <p>Já tem uma conta? <a href="{% url 'login' %}">Faça login aqui</a>.</p>
+    </div>
 </body>
 </html>
